@@ -10,6 +10,14 @@ import org.json.JSONObject;  // Import for JSONObject
 public class WeatherApp {
 
     public static void main(String[] args) {
+        String city;
+    if (args.length > 0) {
+        city = args[0];
+    } else {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the city name: ");
+        city = scanner.nextLine();
+    }
         // Get your API Key from OpenWeatherMap and replace with your actual API key.
         String apiKey = "dff57e935c6225bb8abdcf424856b566";  // Replace with your actual API Key from OpenWeatherMap
 
