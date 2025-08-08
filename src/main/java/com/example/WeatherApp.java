@@ -1,4 +1,5 @@
 package com.example;
+
 import java.util.Scanner;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -6,25 +7,23 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;  // Import for JSONObject
 
-
 public class WeatherApp {
 
     public static void main(String[] args) {
         String city;
-    if (args.length > 0) {
-        city = args[0];
-    } else {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the city name: ");
-        city = scanner.nextLine();
-    }
-        // Get your API Key from OpenWeatherMap and replace with your actual API key.
-        String apiKey = "dff57e935c6225bb8abdcf424856b566";  // Replace with your actual API Key from OpenWeatherMap
 
-        // Get city name from the user input
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the city name: ");
-        String city = scanner.nextLine();
+        // If a city name is passed as a command-line argument, use it
+        if (args.length > 0) {
+            city = args[0];
+        } else {
+            // Otherwise, ask the user for the city name
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the city name: ");
+            city = scanner.nextLine();
+        }
+
+        // Your API key
+        String apiKey = "dff57e935c6225bb8abdcf424856b566"; // Replace with your actual API Key
 
         // Call the method to get weather data
         getWeather(city, apiKey);
@@ -70,7 +69,6 @@ public class WeatherApp {
             System.out.println("Wind Speed: " + jsonResponse.getJSONObject("wind").getDouble("speed") + " m/s");
             System.out.println("Pressure: " + jsonResponse.getJSONObject("main").getInt("pressure") + " hPa");
             System.out.println("Visibility: " + jsonResponse.getInt("visibility") / 1000 + " km");
-
 
         } catch (Exception e) {
             e.printStackTrace();
